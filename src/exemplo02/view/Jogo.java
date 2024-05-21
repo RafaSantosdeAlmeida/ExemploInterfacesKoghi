@@ -29,6 +29,10 @@ public class Jogo extends JPanel implements Runnable {
     final int linhas = 10;
     final int alturaTela = linhas * tamanhoTile;
     
+    //Posicionamento inicial do retângulo
+    int x = 100;
+    int y = 100;
+    
     //Carregar a classe de movimento
     Teclado tc = new Teclado();
     
@@ -42,6 +46,21 @@ public class Jogo extends JPanel implements Runnable {
         this.addKeyListener(tc);
         //Forçar que a janela seja criada no foco
         setFocusable(true);
+    }
+    
+    public void atualizar(){
+        if(tc.cima == true){
+            y -= 10;
+        }
+        else if(tc.baixo == true){
+            y += 10;
+        }
+        else if(tc.esquerda == true){
+            x -= 10;
+        }
+        else if(tc.direita == true){
+            x += 10;
+        }
     }
     
     public void paintComponent(Graphics g){
@@ -59,7 +78,7 @@ public class Jogo extends JPanel implements Runnable {
     
     @Override
     public void run() {
-        
+        atualizar();
     }
     
 }
